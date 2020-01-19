@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">WOW Helper</string>
+    <string name="letters">Letters</string>
+    <string name="letters_count">Letters count:</string>
+    <string name="regex">RegEx</string>
+    <string name="filters">Filters</string>
+</resources>
