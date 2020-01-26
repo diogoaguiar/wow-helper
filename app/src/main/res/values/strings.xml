@@ -4,4 +4,7 @@
     <string name="letters_count">Letters count:</string>
     <string name="regex">RegEx</string>
     <string name="filters">Filters</string>
+    <string name="confirm">Confirm</string>
+    <string name="no_results">No results</string>
+    <string name="clear_filters">Clear filters</string>
 </resources>

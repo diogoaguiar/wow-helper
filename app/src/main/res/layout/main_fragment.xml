@@ -15,7 +15,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toStartOf="@+id/ib_confirm"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -24,8 +24,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/letters"
-            android:singleLine="true"
-            android:textAllCaps="false" />
+            android:selectAllOnFocus="true"
+            android:maxLines="1"
+            android:inputType="text"
+            android:imeOptions="actionSearch"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -35,22 +37,93 @@
         android:layout_marginTop="16dp"
         android:background="@android:color/white"
         android:scrollbars="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/filters"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/til_letters"
-        tools:listitem="@layout/item_word" />
+        tools:listitem="@layout/item_word">
+    </androidx.recyclerview.widget.RecyclerView>
 
-    <ImageButton
-        android:id="@+id/ib_confirm"
+    <TextView
+        android:id="@+id/tv_empty_state"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:backgroundTint="@color/colorAccent"
-        android:src="@drawable/ic_check_black_24dp"
-        android:tint="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/til_letters"
+        android:gravity="center"
+        android:text="@string/no_results"
+        android:textAllCaps="true"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/rv_words"
+        app:layout_constraintEnd_toEndOf="@+id/rv_words"
+        app:layout_constraintStart_toStartOf="@+id/rv_words"
+        app:layout_constraintTop_toTopOf="@+id/rv_words" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/filters"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/til_letters" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/tv_filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="1"
+            android:fontFamily="monospace"
+            android:letterSpacing="0.25"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:textAllCaps="true"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textColor="@color/colorPrimary"
+            android:minHeight="50dp"
+            app:layout_constraintBottom_toTopOf="@+id/gl_options"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="A********A" />
+
+        <GridLayout
+            android:id="@+id/gl_options"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="8dp"
+            android:orientation="horizontal"
+            android:columnCount="7"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <ImageButton
+            android:id="@+id/ib_clear_filter"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/ic_clear_black_24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/clear_filters" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ToggleButton
+        android:id="@+id/tb_filters"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:checked="false"
+        android:minWidth="50dp"
+        android:minHeight="0dp"
+        android:text="@string/filters"
+        android:textOff="@string/filters"
+        android:textOn="@string/filters"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/rv_words"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
